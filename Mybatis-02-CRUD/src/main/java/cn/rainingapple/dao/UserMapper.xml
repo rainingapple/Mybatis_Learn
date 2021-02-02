@@ -2,21 +2,21 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.rainingapple.dao.UserMapper">
-    <select id="selectuser" resultType="cn.rainingapple.pojo.User">
+<mapper namespace="cn.UserMapper">
+    <select id="selectuser" resultType="cn.User">
         select * from user
     </select>
 
-    <select id="selectuserbyid" resultType="cn.rainingapple.pojo.User">
+    <select id="selectuserbyid" resultType="cn.User">
         select * from user where id = #{id}
     </select>
 
-    <insert id="adduser" parameterType="cn.rainingapple.pojo.User">
+    <insert id="adduser" parameterType="cn.User">
         insert into user (id,name,pwd)
         values (#{id},#{name},#{pwd});
     </insert>
 
-    <update id="updateuser" parameterType="cn.rainingapple.pojo.User">
+    <update id="updateuser" parameterType="cn.User">
         update user
         set pwd = #{pwd}
         where id = #{id};
@@ -26,12 +26,12 @@
         delete from user where id = #{id}
     </delete>
 
-    <select id="selectuser_map" parameterType="map" resultType="cn.rainingapple.pojo.User">
+    <select id="selectuser_map" parameterType="map" resultType="cn.User">
         select *
         from user where id = #{userid} and pwd = #{userpwd};
     </select>
 
-    <select id="selectuser_like" resultType="cn.rainingapple.pojo.User">
+    <select id="selectuser_like" resultType="cn.User">
         select *
         from user where name like #{value};
     </select>

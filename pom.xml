@@ -11,6 +11,7 @@
     <modules>
         <module>Mybatis-01-MyBatis_HelloWorld</module>
         <module>Mybatis-02-CRUD</module>
+        <module>Mybatis-03-XML_Configuration</module>
     </modules>
 
     <properties>

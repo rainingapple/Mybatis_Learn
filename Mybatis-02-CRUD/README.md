@@ -55,12 +55,12 @@ public interface UserMapper {
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.rainingapple.dao.UserMapper">
-    <select id="selectuser" resultType="cn.rainingapple.pojo.User">
+<mapper namespace="cn.UserMapper">
+    <select id="selectuser" resultType="cn.User">
         select * from user
     </select>
 
-    <select id="selectuserbyid" resultType="cn.rainingapple.pojo.User">
+    <select id="selectuserbyid" resultType="cn.User">
         <!--使用#{}来对应表示参数-->
         select * from user where id = #{id}
     </select>
@@ -91,7 +91,7 @@ int adduser(User user)
 ### UserMapper.xml
 
 ```xml
-    <insert id="adduser" parameterType="cn.rainingapple.pojo.User">
+    <insert id="adduser" parameterType="cn.User">
         insert into user (id,name,pwd)
         values (#{id},#{name},#{pwd});
     </insert>
@@ -124,7 +124,7 @@ int updateuser(User user);
 ### UserMapper.xml
 
 ```xml
-    <update id="updateuser" parameterType="cn.rainingapple.pojo.User">
+    <update id="updateuser" parameterType="cn.User">
         update user
         set pwd = #{pwd}
         where id = #{id};
@@ -208,7 +208,7 @@ User selectuser_map(Map<String,String> map);
 这样在传参时需要传递的是键名，而不需要一定是原来的pojo对应的属性名
 
 ```xml
-    <select id="selectuser_map" parameterType="map" resultType="cn.rainingapple.pojo.User">
+    <select id="selectuser_map" parameterType="map" resultType="cn.User">
         select *
         from user where id = #{userid} and pwd = #{userpwd};
     </select>
@@ -249,7 +249,7 @@ List<User> selectuser_like(String value);
 这样在传参时需要传递的是键名，而不需要一定是原来的pojo对应的属性名
 
 ```xml
-    <select id="selectuser_like" resultType="cn.rainingapple.pojo.User">
+    <select id="selectuser_like" resultType="cn.User">
         select *
         from user where name like #{value};
     </select>

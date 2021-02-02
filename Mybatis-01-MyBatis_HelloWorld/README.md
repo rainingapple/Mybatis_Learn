@@ -228,8 +228,8 @@ public interface UserMapper {
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.rainingapple.dao.UserMapper">
-    <select id="selectUser" resultType="cn.rainingapple.pojo.User">
+<mapper namespace="cn.UserMapper">
+    <select id="selectUser" resultType="cn.User">
         select * from user
     </select>
 </mapper>
@@ -322,7 +322,7 @@ public class MyTest {
     public static void main(String[] args) {
         SqlSession sqlSession = MybatisUtils.getSession();
         
-        List<User> users = sqlSession.selectList("cn.rainingapple.dao.UserMapper.selectuser");
+        List<User> users = sqlSession.selectList("cn.UserMapper.selectuser");
 
         for (User user: users){
             System.out.println(user);
