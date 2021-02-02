@@ -9,3 +9,5 @@ Enjoy it !
 [Mybatis-01-HelloWorld](http://rainingapple.cn/2021/02/01/Mybatis-01-HelloWorld/) : Mybatis history and features , and a simple demo  
 
 [Mybatis-02-CRUD](http://rainingapple.cn/2021/02/02/Mybatis-02-CRUD/) : CRUD using Mybatis 
+
+[Mybatis-03-Configuration and lifecycle](http://rainingapple.cn/2021/02/02/Mybatis-03-Configuration-and-lifecycle/) : Mybatis Configuration and lifecycle for basic elements
