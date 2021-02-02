@@ -25,4 +25,14 @@
     <delete id="deleteuser" parameterType="int">
         delete from user where id = #{id}
     </delete>
+
+    <select id="selectuser_map" parameterType="map" resultType="cn.rainingapple.pojo.User">
+        select *
+        from user where id = #{userid} and pwd = #{userpwd};
+    </select>
+
+    <select id="selectuser_like" resultType="cn.rainingapple.pojo.User">
+        select *
+        from user where name like #{value};
+    </select>
 </mapper>

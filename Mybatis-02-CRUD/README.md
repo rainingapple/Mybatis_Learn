@@ -184,3 +184,88 @@ int deleteuser(int id);
 - 相应的mapper.xml注册应该用/，因为他是文件。
 - insert、select、update、delete混用导致问题
 - maven资源没有过滤导致的导出的问题（解决方案见上一篇日志）
+
+## 扩展
+
+### 使用map来传递参数
+
+在进行查询操作时，我们先前是生成一个实体类，将它传递作为参数。
+
+但是在实际项目中，参数可能很多，我们一一填入效率很低。
+
+并且很多时候我们希望可以取别名来传参。
+
+通过map来传参完美解决了上述的问题
+
+#### UserMapper
+
+```java
+User selectuser_map(Map<String,String> map);
+```
+
+#### UserMapper.xml
+
+这样在传参时需要传递的是键名，而不需要一定是原来的pojo对应的属性名
+
+```xml
+    <select id="selectuser_map" parameterType="map" resultType="cn.rainingapple.pojo.User">
+        select *
+        from user where id = #{userid} and pwd = #{userpwd};
+    </select>
+```
+
+#### Mytest
+
+创建包含我们需要字段的map进行传递即可
+
+```java
+    @Test
+    public void testselectuser_map() {
+        SqlSession sqlSession = MybatisUtils.getSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        Map<String,String> map = new HashMap<String, String>();
+        map.put("userid","1");
+        map.put("userpwd","99999");
+        User user = mapper.selectuser_map(map);
+        System.out.println(user);
+        sqlSession.close();
+    }
+```
+
+### 模糊查询
+
+使用Mybatis进行模糊查询操作基本类似，仅在sql语句部分有所区别。
+
+出于安全考虑，不要再mapper.xml中加入通配符。
+
+#### UserMapper
+
+```java
+List<User> selectuser_like(String value);
+```
+
+#### UserMapper.xml
+
+这样在传参时需要传递的是键名，而不需要一定是原来的pojo对应的属性名
+
+```xml
+    <select id="selectuser_like" resultType="cn.rainingapple.pojo.User">
+        select *
+        from user where name like #{value};
+    </select>
+```
+
+#### Mytest
+
+创建包含我们需要字段的map进行传递即可
+
+```java
+    @Test
+    public void testselectuser_like() {
+        SqlSession sqlSession = MybatisUtils.getSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        List<User> user = mapper.selectuser_like("%张%");
+        System.out.println(user);
+        sqlSession.close();
+    }
+```
